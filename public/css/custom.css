@@ -1,0 +1,25 @@
+body, p, h1, h2, h3, h4, h5, strong, small, strong, .box, .content, .box-body, .content-wrapper, .content-header, td, th, tr, tbody, thead {
+
+font-family: 'IBM Plex Sans', sans-serif !important;
+
+}
+
+span, div, a, li, .sidebar, .card, .card-header {
+font-family: 'Karla', sans-serif !important;
+}
+
+
+.alert.alert-danger.error-msg {
+    margin-top: 10px;
+}
+
+.alert.alert-danger.col-md-9.custom {
+    margin-left: 75px;
+    margin-top: 10px;
+}
+
+.card-header.font-weight-bold {
+    color: sienna;
+    font-size: large;
+    text-align: center;
+}
