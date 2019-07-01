@@ -33,8 +33,6 @@
           {!! Form::label('category_id', 'Category:', ['class' => 'font-weight-bold']) !!}
           @if(isset($categories) && count($categories) > 0)
           {!! Form::select('category_id', [''=>'Choose Options'] + $categories , null, ['class'=>'form-control'])!!}
-          @else
-          {{ "No Category Found" }}
           @endif
           @if ($errors->has('category_id'))
 			<div class="alert alert-danger error-msg" id="custom-fade-category">
@@ -52,8 +50,6 @@
 			 {!! Form::checkbox('tags[]', $tag -> id) !!} {{ $tag->tag }}
          </div>
           @endforeach
-          @else
-          {{ "No Tags Found" }}
           @endif
           @if ($errors->has('tags'))
 			<div class="alert alert-danger error-msg" id="custom-fade-tag">
@@ -61,7 +57,6 @@
 			</div>
           @endif
         </div>
-
 
 
 		<div class="form-group {{ $errors->has('featured') ? 'has-error' : '' }}">

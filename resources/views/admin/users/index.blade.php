@@ -21,9 +21,20 @@
 					<tr>
 					<td>{{ $loop -> iteration }}</td>
 					<td>{{ $user -> name }}</td>
-              		<td>Image</td>
-					<td>Permission</td>
-					<td><a href="{{ route('users.delete', ['id' => $user  -> id]) }}" class="btn btn-warning">Trash</a></td>
+
+              		<td> <img src="{{ asset($user -> profile -> avatar) ? asset($user -> profile -> avatar) : 'https://via.placeholder.com/400' }}" alt="" height="60" width="70" style="border-radius: 50%">  </td>
+					<td>
+						@if($user->admin)
+							   <a href="{{ route('users.not.admin', ['id' => $user->id]) }}" class="btn btn-sm btn-danger">Remove Permission</a>
+						@else
+							   <a href="{{ route('users.admin', ['id' => $user->id]) }}" class="btn btn-sm btn-success">Make Admin</a>
+						@endif
+					</td>
+					<td>
+						@if(Auth::id() !== $user->id)
+						<a href="{{ route('users.delete', ['id' => $user  -> id]) }}" class="btn btn-sm btn-info">Delete</a>
+						@endif
+					</td>
 					</tr>
 				@endforeach
 				@else

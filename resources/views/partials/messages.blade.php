@@ -13,3 +13,13 @@
     <div class="clear-fix">
     </div>
 @endif
+
+
+@if (Session::has('only_admin') && !empty(Session::get('only_admin')))
+    <div class="alert alert-danger col-md-12 custom" id="custom-fade" role="alert">
+        <span class="message-body font-weight-bold"> {{ Session::get('only_admin') }} </span>
+    </div>
+    <div class="clear-fix">
+
+    </div>
+@endif

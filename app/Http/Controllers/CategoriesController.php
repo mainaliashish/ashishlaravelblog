@@ -114,6 +114,9 @@ class CategoriesController extends Controller
     public function destroy($id)
     {
         $category = Category::findOrFail($id);
+        foreach ($category->posts as $post) {
+            $post -> delete();
+        }
         $result = $category->delete();
 
          if($result) {

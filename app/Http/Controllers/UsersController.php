@@ -2,11 +2,17 @@
 
 namespace App\Http\Controllers;
 
+use App\Profile;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class UsersController extends Controller
 {
+    public function __construct()
+    {
+        $this -> middleware('admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -36,7 +42,28 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name'      => 'required',
+            'email'     => 'required|email'
+        ]);
+
+        $user = User::create([
+            'name'       => $request->name,
+            'email'      => $request->email,
+            'password'   => bcrypt('password'),
+        ]);
+
+        $profile = Profile::create([
+            'user_id'  => $user->id,
+            'avatar'   => 'uploads/avatars/preset.png'
+        ]);
+        if($user && $profile) {
+            Session::flash('status', 'User Created Successfully!');
+         } else {
+            Session::flash('error', 'Something went wrong.');
+         }
+
+         return redirect() -> route('users') ;
     }
 
     /**
@@ -81,6 +108,50 @@ class UsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrfail($id);
+
+        $profile = $user -> profile -> delete();
+        $user = $user -> delete();
+
+        if($profile && $user) {
+            Session::flash('status', 'User and Profile Deleted Successfully!');
+         } else {
+            Session::flash('error', 'Something went wrong.');
+         }
+
+         return redirect() -> route('users') ;
+
+    }
+
+    public function admin($id)
+    {
+        $user = User::findOrfail($id);
+
+        $user -> admin = 1;
+        $result = $user -> save();
+
+        if($result) {
+            Session::flash('status', 'User updated to Admin Successfully!');
+         } else {
+            Session::flash('error', 'Something went wrong.');
+         }
+
+         return redirect() -> route('users') ;
+    }
+
+    public function not_admin($id)
+    {
+        $user = User::findOrfail($id);
+
+        $user -> admin = 0;
+        $result = $user -> save();
+
+        if($result) {
+            Session::flash('status', 'User permission updated Successfully!');
+         } else {
+            Session::flash('error', 'Something went wrong.');
+         }
+
+         return redirect() -> route('users') ;
     }
 }

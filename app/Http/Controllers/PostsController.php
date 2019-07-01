@@ -34,9 +34,9 @@ class PostsController extends Controller
         $categories      = Category::pluck('name', 'id') -> all();
         $tags            = Tag::all();
 
-        if(!$categories){
-            Session::flash('info', 'You must create a category before attempting to create a post!');
-            return redirect() -> route('categories.create');
+        if(!$categories || $tags -> count() == 0){
+            Session::flash('info', 'You must create a category and tag before attempting to create a post!');
+            return redirect() -> route('posts');
         }
         return view('admin.posts.create', compact('categories', 'tags'));
     }
@@ -114,7 +114,6 @@ class PostsController extends Controller
     {
         $post = Post::findOrFail($id);
         $input = $request -> all();
-
         if($request -> hasFile('featured') ){
 
          $featured = $input['featured'];

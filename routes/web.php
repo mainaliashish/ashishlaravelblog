@@ -54,9 +54,13 @@ Route::get('/tags/delete/{id}', 'TagsController@destroy') -> name('tags.delete')
 
 Route::get('/users', 'UsersController@index') -> name('users');
 Route::get('/users/create', 'UsersController@create') -> name('users.create');
+Route::get('/users/admin/{id}', 'UsersController@admin') -> name('users.admin');
+Route::get('/users/not_admin/{id}', 'UsersController@not_admin') -> name('users.not.admin');
 Route::post('/users/store', 'UsersController@store') -> name('users.store');
 Route::get('/users/edit/{id}', 'UsersController@edit') -> name('users.edit');
 Route::patch('/users/update/{id}', 'UsersController@update') -> name('users.update');
 Route::get('/users/delete/{id}', 'UsersController@destroy') -> name('users.delete');
+Route::get('/users/profile', 'ProfilesController@profile') -> name('users.profile');
 
+Route::patch('/users/profile/update', 'ProfilesController@update') -> name('users.profile.update');
 });
