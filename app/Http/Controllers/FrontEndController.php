@@ -10,9 +10,9 @@ use Illuminate\Http\Request;
 
 class FrontEndController extends Controller
 {
-    public function index()
+    public function blog()
     {
-    	return view('index')
+    	return view('blog')
     				->with('categories', Category::take(5)->orderBy('created_at', 'desc')->get())
     				->with('first_post', Post::orderBy('created_at', 'desc')->first())
     				->with('second_post', Post::orderBy('created_at', 'desc')->skip(1)->take(1)->get()->first())

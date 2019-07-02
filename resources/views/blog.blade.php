@@ -1,7 +1,6 @@
 @extends('layouts.frontend')
 
 @section('content')
-    <div class="header-spacer"></div>
 
     <div class="container">
         <div class="row">

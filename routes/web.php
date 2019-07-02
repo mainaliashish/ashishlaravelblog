@@ -11,7 +11,8 @@
 |
 */
 
-Route::get('/', 'FrontEndController@index')->name('index');
+Route::get('/', 'FrontEndController@blog')->name('blog');
+Route::get('/blog', 'FrontEndController@blog')->name('blog.index');
 Route::get('/post/{slug}', 'FrontEndController@singlepost')->name('posts.single');
 
 

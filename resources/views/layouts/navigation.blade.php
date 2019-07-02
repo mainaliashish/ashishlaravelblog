@@ -1,6 +1,9 @@
 <div class="col-lg-4">
     <ul class="list-group">
         <li class="list-group-item">
+             <a href="{{ route('blog.index') }}">Site</a>
+        </li>
+        <li class="list-group-item">
              <a href="{{ route('home') }}">Home</a>
         </li>
         <li class="list-group-item">
