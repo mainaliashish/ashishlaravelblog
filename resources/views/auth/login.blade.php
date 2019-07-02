@@ -6,14 +6,6 @@
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
-                @if (Session::has('only_admin') && !empty(Session::get('only_admin')))
-                    <div class="alert alert-danger col-md-9 custom" id="custom-fade" role="alert">
-                        <span class="message-body"> {{ Session::get('only_admin') }} </span>
-                    </div>
-                    <div class="clear-fix">
-
-                    </div>
-                @endif
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf

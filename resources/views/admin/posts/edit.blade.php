@@ -20,7 +20,7 @@
 		<div class="form-group {{ $errors->has('content') ? 'has-error' : '' }}">
 			{!! Form::label('content', 'Content:', ['class' => 'font-weight-bold']) !!}
 
-				<textarea class="textarea_editor form-control" name="content" rows="12" placeholder="Enter post content" >
+				<textarea class="textarea_editor form-control" name="content" rows="12" id="content" placeholder="Enter post content" >
 				{!! $post -> content !!}
 				</textarea>
 
@@ -91,8 +91,22 @@
 
 </div>
 @endsection
+@section('headerSection')
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.css" rel="stylesheet">
+@endsection
 
 @section('footerSection')
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.12/summernote-lite.js"></script>
+
+	  <script>
+		$(document).ready(function() {
+		  $('#content').summernote({
+		  	    tabsize: 2,
+        		height: 130
+		  });
+		});
+    </script>
   <script type="text/javascript" charset="utf-8">
 
 	$( window ).on( "load", function() {

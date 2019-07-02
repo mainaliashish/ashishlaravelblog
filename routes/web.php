@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'FrontEndController@index')->name('index');
+Route::get('/{slug}', 'FrontEndController@singlepost')->name('posts.single');
+
 
 Auth::routes();
 
@@ -61,6 +61,7 @@ Route::get('/users/edit/{id}', 'UsersController@edit') -> name('users.edit');
 Route::patch('/users/update/{id}', 'UsersController@update') -> name('users.update');
 Route::get('/users/delete/{id}', 'UsersController@destroy') -> name('users.delete');
 Route::get('/users/profile', 'ProfilesController@profile') -> name('users.profile');
-
 Route::patch('/users/profile/update', 'ProfilesController@update') -> name('users.profile.update');
+Route::get('/settings', 'SettingsController@index') -> name('settings') -> middleware('admin');
+Route::post('/settings/update', 'SettingsController@update') -> name('settings.update') -> middleware('admin');
 });
