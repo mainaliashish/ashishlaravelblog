@@ -7,12 +7,11 @@
             <div class="col-lg-2"></div>
             <div class="col-lg-8">
                 <article class="hentry post post-standard has-post-thumbnail sticky">
-
                         @if($first_post)
                         <div class="post-thumb">
-                            <img src="{{ $first_post -> featured ? $first_post -> featured : 'https://via.placeholder.com/800' }}" alt="{{ isset($first_post -> title) ? $first_post -> title : '' }}">
+                            <img src="{{ $first_post -> featured ? $first_post -> featured : 'https://placeimg.com/640/480/any' }}" alt="{{ isset($first_post -> title) ? $first_post -> title : '' }}">
                             <div class="overlay"></div>
-                            <a href="{{ $first_post -> featured ? $first_post -> featured : 'https://via.placeholder.com/800' }}" class="link-image js-zoom-image">
+                            <a href="{{ $first_post -> featured ? $first_post -> featured : 'https://placeimg.com/640/480/any' }}" class="link-image js-zoom-image">
                                 <i class="seoicon-zoom"></i>
                             </a>
                             <a href="#" class="link-post">
@@ -69,7 +68,7 @@
 
                         @if($second_post)
                         <div class="post-thumb">
-                            <img src="{{ $second_post -> featured ? $second_post -> featured : 'https://via.placeholder.com/800' }}" alt="{{ $second_post -> title ? $second_post -> title : '' }}">
+                            <img src="{{ $second_post -> featured ? $second_post -> featured : 'https://placeimg.com/640/480/any' }}" alt="{{ $second_post -> title ? $second_post -> title : '' }}">
                             <div class="overlay"></div>
                             <a href="{{ $second_post -> featured ? $second_post -> featured : '' }}" class="link-image js-zoom-image">
                                 <i class="seoicon-zoom"></i>
@@ -124,9 +123,9 @@
 
                         @if($third_post)
                         <div class="post-thumb">
-                            <img src="{{ $third_post -> featured ? $third_post -> featured : ''}}" alt="{{ $third_post -> title ? $third_post -> title : '' }}">
+                            <img src="{{ $third_post -> featured ? $third_post -> featured : 'https://placeimg.com/640/480/any'}}" alt="{{ $third_post -> title ? $third_post -> title : '' }}">
                             <div class="overlay"></div>
-                            <a href="{{ $third_post -> featured ? $third_post -> featured : ''}}" class="link-image js-zoom-image">
+                            <a href="{{ $third_post -> featured ? $third_post -> featured : 'https://placeimg.com/640/480/any'}}" class="link-image js-zoom-image">
                                 <i class="seoicon-zoom"></i>
                             </a>
                             <a href="#" class="link-post">
@@ -200,7 +199,7 @@
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                 <div class="case-item">
                                     <div class="case-item__thumb">
-                                        <img src="{{ $post->featured ? $post->featured : '' }}" alt="our case">
+                                        <img src="{{ $post->featured ? $post->featured : 'https://placeimg.com/640/480/any' }}" alt="our case">
                                     </div>
                                     <h6 class="case-item__title"><a href="{{ route('posts.single', ['slug' => $post->slug]) }}">{{
                                    $post->title }}</a></h6>
@@ -232,7 +231,7 @@
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                 <div class="case-item">
                                     <div class="case-item__thumb">
-                                        <img src="{{ $post->featured ? $post->featured : '' }}" alt="our case">
+                                        <img src="{{ $post->featured ? $post->featured : 'https://placeimg.com/640/480/any' }}" alt="our case">
                                     </div>
                                     <h6 class="case-item__title"><a href="{{ route('posts.single', ['slug' => $post->slug]) }}">{{
                                         $post->title

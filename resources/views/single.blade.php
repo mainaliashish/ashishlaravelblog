@@ -23,7 +23,7 @@
                 <article class="hentry post post-standard-details">
 
                     <div class="post-thumb">
-                        <img src="{{ $post->featured }}" alt="{{ $post->title }}">
+                        <img src="{{ $post->featured ? $post->featured : 'https://placeimg.com/640/480/any' }}" alt="{{ $post->title }}">
                     </div>
 
                     <div class="post__content">
