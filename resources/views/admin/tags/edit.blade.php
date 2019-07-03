@@ -5,7 +5,7 @@
 		Update Tag: {{ $tag -> tag }}
 	</div>
 	<div class="card-body">
-        {!! Form::model($tag, ['method'=>'PATCH', 'route' => ['tags.update', $tag->slug]]) !!}
+        {!! Form::model($tag, ['method'=>'PATCH', 'route' => ['tags.update', $tag->id]]) !!}
 		<div class="form-group {{ $errors->has('tag') ? 'has-error' : '' }}">
 			{!! Form::label('tag', 'Tag Name:', ['class' => 'font-weight-bold']) !!}
 			{!! Form::text('tag',null, ['class' => 'form-control','placeholder'=>'Enter Tag name'])  !!}

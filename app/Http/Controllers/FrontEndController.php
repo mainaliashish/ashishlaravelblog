@@ -17,15 +17,15 @@ class FrontEndController extends Controller
     				->with('first_post', Post::orderBy('created_at', 'desc')->first())
     				->with('second_post', Post::orderBy('created_at', 'desc')->skip(1)->take(1)->get()->first())
     				->with('third_post', Post::orderBy('created_at', 'desc')->skip(2)->take(1)->get()->first())
-    				->with('rails', Category::findOrfail('6'))
-    				->with('web', Category::findOrfail('5'))
+    				->with('rails', Category::find('6'))
+    				->with('web', Category::find('5'))
     				->with('settings', Setting::first())
     				;
     }
 
-    public function singlepost($slug)
+    public function singlepost($id)
     {
-    	$post = Post::where('slug', $slug)->first();
+    	$post = Post::find($id);
 
         $next_id = Post::where('id', '>', $post -> id)->min('id');
         $previous_id = Post::where('id', '<', $post -> id)->max('id');
@@ -42,9 +42,10 @@ class FrontEndController extends Controller
 
     }
 
-    public function category($slug)
+    public function category($id)
     {
-        $category = Category::where('slug', $slug) -> first();
+        $category = Category::find($id);
+
         $tags = Tag::all();
 
         return view('category')
@@ -55,9 +56,9 @@ class FrontEndController extends Controller
                     ->with('categories', Category::take('5')->get());
     }
 
-    public function tag($slug)
+    public function tag($id)
     {
-        $tag = Tag::where('slug', $slug) -> first();
+        $tag = Tag::find($id);
         $tags = Tag::all();
 
         return view('tag')

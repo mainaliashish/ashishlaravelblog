@@ -19,7 +19,7 @@
 					<tr>
 					<td>{{ $loop -> iteration }}</td>
 					<td>{{ $category -> name }}</td>
-					<td><a href="{{ route('categories.edit', ['slug' => $category -> slug]) }}" class="btn btn-sm btn-info">Edit</a></td>
+					<td><a href="{{ route('categories.edit', ['id' => $category -> id]) }}" class="btn btn-sm btn-info">Edit</a></td>
 					<td><a href="{{ route('categories.delete', ['id' => $category -> id]) }}" class="btn btn-sm btn-danger">Delete</a></td>
 					</tr>
 				@endforeach
