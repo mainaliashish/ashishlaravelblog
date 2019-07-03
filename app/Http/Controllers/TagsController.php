@@ -42,7 +42,8 @@ class TagsController extends Controller
         ]);
 
         $result = Tag::create([
-            'tag' => $request -> tag
+            'tag' => $request -> tag,
+            'slug' => str_slug($request -> tag)
         ]);
 
         if($result) {

@@ -43,18 +43,22 @@
 <div class="content-wrapper">
 
   @include('includes.header')
-
+  @if (Session::has('subscribe') && !empty(Session::get('subscribe')))
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 custom-subscribe text-center" id="custom-subscribe" style="margin-left: 355px">
+                <div class="case-item custom" style="background: lightgreen">
+                <h5>{{ Session::get('subscribe') }}</h5>
+                </div>
+            </div>
+<br/>
+<br/>
+@endif
     <div class="container">
         @yield('content')
     </div>
 
-
-    <div class="container-fluid">
-
-    </div>
-
+    @include('includes.subscriber')
 <!-- End Subscribe Form -->
-</div>
+
 
 
 
@@ -105,8 +109,8 @@
     <div class="container">
         <div class="row">
             <div class="form_search-wrap">
-                <form>
-                    <input class="overlay_search-input" placeholder="Type and hit Enter..." type="text">
+                <form method="GET" action="{{ route('results') }}">
+                    <input class="overlay_search-input" name="query" placeholder="Type and hit Enter..." type="text">
                     <a href="#" class="overlay_search-close">
                         <span></span>
                         <span></span>
@@ -126,7 +130,6 @@
 <script src="{{ asset('app/js/swiper.jquery.min.js') }}"></script>
 <script src="{{ asset('app/js/theme-plugins.js') }}"></script>
 <script src="{{ asset('app/js/main.js') }}"></script>
-<script src="{{ asset('app/js/form-actions.js') }}"></script>
 
 <script src="{{ asset('app/js/velocity.min.js') }}"></script>
 <script src="{{ asset('app/js/ScrollMagic.min.js') }}"></script>
@@ -134,6 +137,13 @@
 
 
 <!-- ...end JS Script -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5d1c72d41675b113"></script>
+  <script type="text/javascript" charset="utf-8">
 
+    $( window ).on( "load", function() {
+        $('#custom-subscribe').delay(800).fadeOut(1500);
+    });
+
+    </script>
 </body>
 </html>

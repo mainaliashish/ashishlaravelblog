@@ -8,6 +8,7 @@ use App\Http\Requests\PostUpdateRequest;
 use App\Post;
 use App\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 
 class PostsController extends Controller
@@ -55,6 +56,7 @@ class PostsController extends Controller
         $featured = $request->file('featured');
 
         $input['slug'] = str_slug($input['title']);
+        $user_id = Auth::id;
 
         if($featured) {
             $name = time() . $featured -> getClientOriginalName();

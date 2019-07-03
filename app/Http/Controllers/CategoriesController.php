@@ -44,6 +44,9 @@ class CategoriesController extends Controller
         $category = new Category;
 
         $category -> name = $request -> name;
+
+        $category -> slug = str_slug($request -> slug);
+
         $result = $category -> save();
         if($result) {
             Session::flash('status', 'Category Created Successfully!');

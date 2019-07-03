@@ -27,13 +27,44 @@ class FrontEndController extends Controller
     {
     	$post = Post::where('slug', $slug)->first();
 
+        $next_id = Post::where('id', '>', $post -> id)->min('id');
+        $previous_id = Post::where('id', '<', $post -> id)->max('id');
+
     	return view('single')
     				->with('post', $post)
     				->with('title', $post->title)
     				->with('categories', Category::take('5')->get())
         		    ->with('settings', Setting::first())
-                    ->with('tags', Tag::all());
+                    ->with('tags', Tag::all())
+                    ->with('next', Post::find($next_id))
+                    ->with('previous', Post::find($previous_id));
 
 
+    }
+
+    public function category($slug)
+    {
+        $category = Category::where('slug', $slug) -> first();
+        $tags = Tag::all();
+
+        return view('category')
+                    ->with('category', $category)
+                    ->with('tags', $tags)
+                    ->with('title', $category->name)
+                    ->with('settings', Setting::first())
+                    ->with('categories', Category::take('5')->get());
+    }
+
+    public function tag($slug)
+    {
+        $tag = Tag::where('slug', $slug) -> first();
+        $tags = Tag::all();
+
+        return view('tag')
+                    ->with('tag', $tag)
+                    ->with('tags', $tags)
+                    ->with('title', $tag->tag)
+                    ->with('settings', Setting::first())
+                    ->with('categories', Category::take('5')->get());
     }
 }

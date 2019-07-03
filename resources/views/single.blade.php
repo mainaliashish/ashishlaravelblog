@@ -23,19 +23,22 @@
                 <article class="hentry post post-standard-details">
 
                     <div class="post-thumb">
-                        <img src="{{ $post->featured ? $post->featured : 'https://placeimg.com/640/480/any' }}" alt="{{ $post->title }}">
+                        <img src="{{ asset($post->featured) }}" alt="{{ $post->title }}">
                     </div>
 
                     <div class="post__content">
 
                         <div class="post__content-info">
 
-								{!! $post->content !!}
-
+								{!! $post -> content !!}
+                        <div class="socials">
+                            <div class="addthis_inline_share_toolbox"></div>
+                        </div>
+                        <br>
                             <div class="widget w-tags">
                                 <div class="tags-wrap">
                                 	@foreach($post->tags as $tag)
-                                    <a href="#" class="w-tags-item">{{ $tag->tag }}</a>
+                                    <a href="{{ route('tags.single', ['slug' => $tag->slug]) }}" class="w-tags-item">{{ $tag->tag }}</a>
                                     @endforeach
                                 </div>
                             </div>
@@ -43,84 +46,54 @@
                         </div>
                     </div>
 
-                    <div class="socials">Share:
-                        <a href="#" class="social__item">
-                            <i class="seoicon-social-facebook"></i>
-                        </a>
-                        <a href="#" class="social__item">
-                            <i class="seoicon-social-twitter"></i>
-                        </a>
-                        <a href="#" class="social__item">
-                            <i class="seoicon-social-linkedin"></i>
-                        </a>
-                        <a href="#" class="social__item">
-                            <i class="seoicon-social-google-plus"></i>
-                        </a>
-                        <a href="#" class="social__item">
-                            <i class="seoicon-social-pinterest"></i>
-                        </a>
-                    </div>
-
                 </article>
 
                 <div class="blog-details-author">
 
                     <div class="blog-details-author-thumb">
-                        <img src="app/img/blog-details-author.png" alt="Author">
+                        <img src="{{ asset($post->user->profile->avatar) }}" height="90" width="60" alt="Author">
                     </div>
 
                     <div class="blog-details-author-content">
                         <div class="author-info">
-                            <h5 class="author-name">Philip Demarco</h5>
+                            <h5 class="author-name">{{ $post->user->name }}</h5>
                             <p class="author-info">SEO Specialist</p>
                         </div>
-                        <p class="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                            nonummy nibh euismod.
+                        <p class="text">{{ $post-> user -> profile -> about }}
                         </p>
-                        <div class="socials">
-
-                            <a href="#" class="social__item">
-                                <img src="app/svg/circle-facebook.svg" alt="facebook">
-                            </a>
-
-                            <a href="#" class="social__item">
-                                <img src="app/svg/twitter.svg" alt="twitter">
-                            </a>
-
-                            <a href="#" class="social__item">
-                                <img src="app/svg/google.svg" alt="google">
-                            </a>
-
-                            <a href="#" class="social__item">
-                                <img src="app/svg/youtube.svg" alt="youtube">
-                            </a>
-
+                        <div class="socials text-center">
+                            <div class="addthis_inline_share_toolbox"></div>
                         </div>
                     </div>
                 </div>
 
                 <div class="pagination-arrow">
 
-                    <a href="#" class="btn-prev-wrap">
-                        <svg class="btn-prev">
-                            <use xlink:href="#arrow-left"></use>
-                        </svg>
+
+                    @if($next)
+                    <a href="{{ route('posts.single', ['slug' => $next -> slug]) }}" class="btn-next-wrap">
                         <div class="btn-content">
                             <div class="btn-content-title">Next Post</div>
-                            <p class="btn-content-subtitle">Claritas Est Etiam Processus</p>
-                        </div>
-                    </a>
-
-                    <a href="#" class="btn-next-wrap">
-                        <div class="btn-content">
-                            <div class="btn-content-title">Previous Post</div>
-                            <p class="btn-content-subtitle">Duis Autem Velius</p>
+                            <p class="btn-content-subtitle">{{
+                                $next -> title }}</p>
                         </div>
                         <svg class="btn-next">
                             <use xlink:href="#arrow-right"></use>
                         </svg>
                     </a>
+                    @endif
 
+                    @if($previous)
+                    <a href="{{ route('posts.single', ['slug' => $previous -> slug]) }}" class="btn-prev-wrap">
+                        <svg class="btn-prev">
+                            <use xlink:href="#arrow-left"></use>
+                        </svg>
+                        <div class="btn-content">
+                            <div class="btn-content-title">Previous Post</div>
+                            <p class="btn-content-subtitle">{{ $previous-> title }}</p>
+                        </div>
+                    </a>
+                    @endif
                 </div>
 
                 <div class="comments">
@@ -132,6 +105,7 @@
                             <span class="long-line"></span>
                         </div>
                     </div>
+                    @include('includes.disqus')
                 </div>
 
                 <div class="row">
@@ -157,8 +131,9 @@
                         </div>
 
                         <div class="tags-wrap">
+
                             @foreach($tags as $tag)
-                            <a href="#" class="w-tags-item">{{ $tag -> tag }}</a>
+                            <a href="{{ route('tags.single', ['slug' => $tag->slug]) }}" class="w-tags-item">{{ $tag -> tag }}</a>
                             @endforeach
                         </div>
                     </div>

@@ -14,6 +14,28 @@
 Route::get('/', 'FrontEndController@blog')->name('blog');
 Route::get('/blog', 'FrontEndController@blog')->name('blog.index');
 Route::get('/post/{slug}', 'FrontEndController@singlepost')->name('posts.single');
+Route::get('/category/{slug}', 'FrontEndController@category')->name('categories.single');
+Route::get('/tag/{slug}', 'FrontEndController@tag')->name('tags.single');
+Route::get('/results', function(){
+		$posts = \App\Post::where('title', 'like', '%' . request('query') . '%')->get();
+		return  view('results')->with('posts', $posts)
+		            ->with('title', 'Search results for : ' . request('query'))
+                    ->with('settings', \App\Setting::first())
+                    ->with('categories', \App\Category::take('5')->get())
+                    ->with('tags', \App\Tag::all())
+                    ->with('query', request('query'));
+}) ->  name('results');
+
+Route::post('/subscribe', function(){
+
+	$email = request('email');
+
+	Newsletter::subscribe($email);
+
+	Session::flash('subscribe', 'You have successfully subscribed!');
+	return redirect() -> back();
+
+}) -> name('subscribe');
 
 
 Auth::routes();
@@ -21,7 +43,7 @@ Auth::routes();
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 
-Route::get('/home', 'HomeController@index')-> name('home');
+Route::get('/dashboard', 'HomeController@index')-> name('dashboard');
 /* Post Routes */
 Route::get('/posts', 'PostsController@index') -> name('posts');
 Route::get('/posts/create', 'PostsController@create') -> name('posts.create');

@@ -9,9 +9,9 @@
                 <article class="hentry post post-standard has-post-thumbnail sticky">
                         @if($first_post)
                         <div class="post-thumb">
-                            <img src="{{ $first_post -> featured ? $first_post -> featured : 'https://placeimg.com/640/480/any' }}" alt="{{ isset($first_post -> title) ? $first_post -> title : '' }}">
+                            <img src="{{ asset($first_post -> featured) }}" alt="{{ isset($first_post -> title) ? $first_post -> title : '' }}">
                             <div class="overlay"></div>
-                            <a href="{{ $first_post -> featured ? $first_post -> featured : 'https://placeimg.com/640/480/any' }}" class="link-image js-zoom-image">
+                            <a href="{{ asset($first_post -> featured) }}" class="link-image js-zoom-image">
                                 <i class="seoicon-zoom"></i>
                             </a>
                             <a href="#" class="link-post">
@@ -44,7 +44,7 @@
 
                                         <span class="category">
                                             <i class="seoicon-tags"></i>
-                                            <a href="#">{{ isset($first_post->category->name) ? $first_post->category->name : '' }}</a>
+                                            <a href="{{ route('categories.single', ['slug' => $first_post->category->slug ]) }}">{{ isset($first_post->category->name) ? $first_post->category->name : '' }}</a>
                                         </span>
 
                                         <span class="post__comments">
@@ -68,9 +68,9 @@
 
                         @if($second_post)
                         <div class="post-thumb">
-                            <img src="{{ $second_post -> featured ? $second_post -> featured : 'https://placeimg.com/640/480/any' }}" alt="{{ $second_post -> title ? $second_post -> title : '' }}">
+                            <img src="{{ asset($second_post -> featured) }}" alt="{{ $second_post -> title ? $second_post -> title : '' }}">
                             <div class="overlay"></div>
-                            <a href="{{ $second_post -> featured ? $second_post -> featured : '' }}" class="link-image js-zoom-image">
+                            <a href="{{ asset($second_post -> featured) }}" class="link-image js-zoom-image">
                                 <i class="seoicon-zoom"></i>
                             </a>
                             <a href="#" class="link-post">
@@ -103,7 +103,7 @@
 
                                         <span class="category">
                                             <i class="seoicon-tags"></i>
-                                            <a href="#">{{ $second_post ->category ? $second_post ->category -> name : '' }}</a>
+                                            <a href="{{ route('categories.single', ['slug' => $second_post->category->slug]) }}">{{ $second_post ->category ? $second_post ->category -> name : '' }}</a>
                                         </span>
 
                                         <span class="post__comments">
@@ -123,9 +123,9 @@
 
                         @if($third_post)
                         <div class="post-thumb">
-                            <img src="{{ $third_post -> featured ? $third_post -> featured : 'https://placeimg.com/640/480/any'}}" alt="{{ $third_post -> title ? $third_post -> title : '' }}">
+                            <img src="{{ asset($third_post -> featured) }}" alt="{{ $third_post -> title ? $third_post -> title : '' }}">
                             <div class="overlay"></div>
-                            <a href="{{ $third_post -> featured ? $third_post -> featured : 'https://placeimg.com/640/480/any'}}" class="link-image js-zoom-image">
+                            <a href="{{ asset($third_post -> featured) }}" class="link-image js-zoom-image">
                                 <i class="seoicon-zoom"></i>
                             </a>
                             <a href="#" class="link-post">
@@ -157,7 +157,7 @@
 
                                         <span class="category">
                                             <i class="seoicon-tags"></i>
-                                            <a href="#">{{ $third_post -> category ? $third_post -> category->name : '' }}</a>
+                                            <a href="{{ route('categories.single', ['slug' => $third_post->category->slug]) }}">{{ $third_post -> category ? $third_post -> category->name : '' }}</a>
                                         </span>
 
                                         <span class="post__comments">
@@ -199,7 +199,7 @@
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                 <div class="case-item">
                                     <div class="case-item__thumb">
-                                        <img src="{{ $post->featured ? $post->featured : 'https://placeimg.com/640/480/any' }}" alt="our case">
+                                        <img src="{{ asset($post->featured) }}" alt="our case">
                                     </div>
                                     <h6 class="case-item__title"><a href="{{ route('posts.single', ['slug' => $post->slug]) }}">{{
                                    $post->title }}</a></h6>
@@ -231,7 +231,7 @@
                             <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
                                 <div class="case-item">
                                     <div class="case-item__thumb">
-                                        <img src="{{ $post->featured ? $post->featured : 'https://placeimg.com/640/480/any' }}" alt="our case">
+                                        <img src="{{ asset($post->featured) }}" alt="our case">
                                     </div>
                                     <h6 class="case-item__title"><a href="{{ route('posts.single', ['slug' => $post->slug]) }}">{{
                                         $post->title
@@ -245,11 +245,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="padded-50"></div>
             </div>
             </div>
         </div>
     </div>
-
+</div>
+</div>
 @endsection
 
