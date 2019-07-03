@@ -47,8 +47,8 @@ Route::get('/dashboard', 'HomeController@index')-> name('dashboard');
 /* Post Routes */
 Route::get('/posts', 'PostsController@index') -> name('posts');
 Route::get('/posts/create', 'PostsController@create') -> name('posts.create');
-Route::get('/posts/edit/{id}', 'PostsController@edit') -> name('posts.edit');
-Route::patch('/posts/update/{id}', 'PostsController@update') -> name('posts.update');
+Route::get('/posts/edit/{slug}', 'PostsController@edit') -> name('posts.edit');
+Route::patch('/posts/update/{slug}', 'PostsController@update') -> name('posts.update');
 Route::get('/posts/delete/{id}', 'PostsController@destroy') -> name('posts.delete');
 Route::get('/posts/restore/{id}', 'PostsController@restore') -> name('posts.restore');
 Route::get('/posts/trashed', 'PostsController@trashed') -> name('posts.trashed');
@@ -60,8 +60,8 @@ Route::post('/posts/store', 'PostsController@store')  -> name('posts.store');
 Route::get('/categories', 'CategoriesController@index') -> name('categories');
 Route::get('/categories/create', 'CategoriesController@create') -> name('categories.create');
 Route::post('/categories/store', 'CategoriesController@store') -> name('categories.store');
-Route::get('/categories/edit/{id}', 'CategoriesController@edit') -> name('categories.edit');
-Route::patch('/categories/update/{id}', 'CategoriesController@update') -> name('categories.update');
+Route::get('/categories/edit/{slug}', 'CategoriesController@edit') -> name('categories.edit');
+Route::patch('/categories/update/{slug}', 'CategoriesController@update') -> name('categories.update');
 Route::get('/categories/delete/{id}', 'CategoriesController@destroy') -> name('categories.delete');
 
 /* Tags Routes */
@@ -69,8 +69,8 @@ Route::get('/categories/delete/{id}', 'CategoriesController@destroy') -> name('c
 Route::get('/tags', 'TagsController@index') -> name('tags');
 Route::get('/tags/create', 'TagsController@create') -> name('tags.create');
 Route::post('/tags/store', 'TagsController@store') -> name('tags.store');
-Route::get('/tags/edit/{id}', 'TagsController@edit') -> name('tags.edit');
-Route::patch('/tags/update/{id}', 'TagsController@update') -> name('tags.update');
+Route::get('/tags/edit/{slug}', 'TagsController@edit') -> name('tags.edit');
+Route::patch('/tags/update/{slug}', 'TagsController@update') -> name('tags.update');
 Route::get('/tags/delete/{id}', 'TagsController@destroy') -> name('tags.delete');
 
 /* Users Routes */

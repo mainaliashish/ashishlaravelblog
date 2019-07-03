@@ -5,7 +5,7 @@
 		Update Category: {{ $category -> name }}
 	</div>
 	<div class="card-body">
-        {!! Form::model($category, ['method'=>'PATCH', 'route' => ['categories.update', $category->id]]) !!}
+        {!! Form::model($category, ['method'=>'PATCH', 'route' => ['categories.update', $category->slug]]) !!}
 		<div class="form-group {{ $errors->has('name') ? 'has-error' : '' }}">
 			{!! Form::label('Name', 'Name:', ['class' => 'font-weight-bold']) !!}
 			{!! Form::text('name',null, ['class' => 'form-control','placeholder'=>'Enter category name'])  !!}

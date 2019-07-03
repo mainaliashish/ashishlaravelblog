@@ -22,7 +22,7 @@
 					<td>{{ $loop -> iteration }}</td>
 					<td>{{ $post -> title }}</td>
               		<td><img height="50" width="90" src="{{ $post -> featured ? $post -> featured  : 'https://via.placeholder.com/400' }}" alt=""></td>
-					<td><a href="{{ route('posts.edit', ['id' => $post -> id]) }}" class="btn btn-sm btn-info">Edit</a></td>
+					<td><a href="{{ route('posts.edit', ['slug' => $post -> slug]) }}" class="btn btn-sm btn-info">Edit</a></td>
 					<td><a href="{{ route('posts.delete', ['id' => $post -> id]) }}" class="btn btn-sm btn-warning">Trash</a></td>
 					</tr>
 				@endforeach

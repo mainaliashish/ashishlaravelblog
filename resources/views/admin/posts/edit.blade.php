@@ -5,7 +5,7 @@
 		Update Post
 	</div>
 	<div class="card-body">
-        {!! Form::model($post, ['method'=>'PATCH', 'route' => ['posts.update', $post->id], 'files' => true]) !!}
+        {!! Form::model($post, ['method'=>'PATCH', 'route' => ['posts.update', $post->slug], 'files' => true]) !!}
 
 		<div class="form-group {{ $errors->has('title') ? 'has-error' : '' }}">
 			{!! Form::label('title', 'Title:', ['class' => 'font-weight-bold']) !!}

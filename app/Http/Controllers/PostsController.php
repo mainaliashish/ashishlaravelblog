@@ -96,9 +96,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($slug)
     {
-        $post            = Post::findOrFail($id);
+        $post = Post::where('slug', $slug)->first();
         $categories      = Category::pluck('name', 'id')->all();
         $tags            = Tag::all();
 
@@ -112,9 +112,9 @@ class PostsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PostUpdateRequest $request, $id)
+    public function update(PostUpdateRequest $request, $slug)
     {
-        $post = Post::findOrFail($id);
+        $post = Post::where('slug', $slug)->first();
         $input = $request -> all();
         if($request -> hasFile('featured') ){
 

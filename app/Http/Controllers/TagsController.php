@@ -74,7 +74,8 @@ class TagsController extends Controller
      */
     public function edit($id)
     {
-       $tag = Tag::findOrfail($id);
+        $tag = Tag::where('slug', $slug)->first();
+
        return view('admin.tags.edit', compact('tag'));
     }
 
@@ -91,7 +92,8 @@ class TagsController extends Controller
             'tag'   => 'required'
         ]);
 
-        $tag = Tag::findOrfail($id);
+        $tag = Tag::where('slug', $slug)->first();
+
 
         $tag -> tag = $request -> tag;
 
