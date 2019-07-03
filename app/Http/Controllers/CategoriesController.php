@@ -45,7 +45,7 @@ class CategoriesController extends Controller
 
         $category -> name = $request -> name;
 
-        $category -> slug = str_slug($request -> slug);
+        $category -> slug = str_slug($request -> name);
 
         $result = $category -> save();
         if($result) {
@@ -98,6 +98,8 @@ class CategoriesController extends Controller
         $category = Category::find($id);
 
         $category -> name = $request -> name;
+
+        $category -> slug = str_slug($request -> name);
 
         $result = $category -> save();
 
