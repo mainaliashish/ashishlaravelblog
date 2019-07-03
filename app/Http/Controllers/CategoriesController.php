@@ -75,9 +75,9 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($slug)
+    public function edit($id)
     {
-        $category = Category::where('slug', $slug)->first();
+        $category = Category::find($id);
 
         return view('admin.categories.edit') -> with('category', $category);
     }
@@ -89,13 +89,13 @@ class CategoriesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $slug)
+    public function update(Request $request, $id)
     {
         $this -> validate($request, [
             'name'   => 'required'
        ]);
 
-        $category = Category::where('slug', $slug)->first();
+        $category = Category::find($id);
 
         $category -> name = $request -> name;
 
