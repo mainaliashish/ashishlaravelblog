@@ -23,9 +23,9 @@ class FrontEndController extends Controller
     				;
     }
 
-    public function singlepost($id)
+    public function singlepost($slug)
     {
-    	$post = Post::find($id);
+    	$post = Post::where('slug', $slug)->first();
 
         $next_id = Post::where('id', '>', $post -> id)->min('id');
         $previous_id = Post::where('id', '<', $post -> id)->max('id');
@@ -42,9 +42,9 @@ class FrontEndController extends Controller
 
     }
 
-    public function category($id)
+    public function category($slug)
     {
-        $category = Category::find($id);
+        $category = Category::where('slug', $slug)->first();
 
         $tags = Tag::all();
 
@@ -56,9 +56,10 @@ class FrontEndController extends Controller
                     ->with('categories', Category::take('5')->get());
     }
 
-    public function tag($id)
+    public function tag($slug)
     {
-        $tag = Tag::find($id);
+        $tag = Tag::where('slug', $slug)->first();
+
         $tags = Tag::all();
 
         return view('tag')
