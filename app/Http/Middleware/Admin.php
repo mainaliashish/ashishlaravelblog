@@ -20,7 +20,7 @@ class Admin
         if(!Auth::user() -> admin)
         {
             Session::flash('only_admin', 'Oops! You do not have permissions to perform this action.');
-            return redirect() -> route('home');
+            return redirect() -> route('admin.dashboard');
         }
         return $next($request);
     }
